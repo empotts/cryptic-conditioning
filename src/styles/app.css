@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  * {
+    border-color: rgb(229 231 235);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    * {
+      border-color: rgb(31 41 55);
+    }
+  }
+
+  html,
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(17 24 39);
+    background-color: rgb(249 250 251);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html,
+    body {
+      background-color: rgb(3 7 18);
+      color: rgb(229 231 235);
+    }
+  }
+
+  .using-mouse * {
+    outline: none !important;
+  }
+}
