@@ -30,22 +30,22 @@
 		}
 	}
 
-  html,
-  body {
-    font-family: "Courier New", Courier, monospace;
-    color: rgb(17 24 39);
-    background-color: rgb(249 250 251);
-    overscroll-behavior-y: none;
-  }
+	html,
+	body {
+		font-family: "Courier New", Courier, monospace;
+		color: rgb(17 24 39);
+		background-color: rgb(249 250 251);
+		overscroll-behavior-y: none;
+	}
 
-  @media (prefers-color-scheme: dark) {
-    html,
-    body {
-      background-color: rgb(3 7 18);
-      color: rgb(229 231 235);
-      overscroll-behavior-y: none;
-    }
-  }
+	@media (prefers-color-scheme: dark) {
+		html,
+		body {
+			background-color: rgb(3 7 18);
+			color: rgb(229 231 235);
+			overscroll-behavior-y: none;
+		}
+	}
 
 	.using-mouse * {
 		outline: none !important;
