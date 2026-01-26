@@ -290,7 +290,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 		const isInActiveEntry = activeCells.includes(index);
 
 		const baseClasses =
-			"w-full aspect-square border border-gray-400 dark:border-gray-600 flex items-center justify-center font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold min-h-[48px]";
+			"w-full aspect-square border border-gray-400 dark:border-gray-600 flex items-center justify-center font-mono text-base text-3xl font-bold min-h-[48px]";
 		const blockClasses = "bg-gray-300 dark:bg-gray-800";
 		const entryClasses = isInActiveEntry
 			? "bg-yellow-100 dark:bg-yellow-900/30"
