@@ -4,12 +4,13 @@
 	"sideEffects": false,
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --port 5173",
 		"build": "vite build && tsc --noEmit",
 		"preview": "vite preview",
 		"deploy": "npm run build && wrangler deploy",
 		"cf-typegen": "wrangler types",
-		"postinstall": "npm run cf-typegen"
+		"postinstall": "npm run cf-typegen",
+		"format": "biome format --write ."
 	},
 	"dependencies": {
 		"@tanstack/react-router": "^1.156.0",

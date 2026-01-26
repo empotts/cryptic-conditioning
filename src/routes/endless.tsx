@@ -38,18 +38,18 @@ function EndlessClue() {
 	};
 
 	return (
-		<div className="min-h-screen flex flex-col">
-			<header className="p-4 border-b border-gray-300 dark:border-gray-700">
-				<h1 className="font-mono text-2xl text-center">
+		<div className="min-h-screen flex flex-col overflow-hidden">
+			<header className="p-4 border-b border-gray-300 dark:border-gray-700 flex-shrink-0">
+				<h1 className="font-mono text-xl md:text-2xl text-center">
 					<a
 						href="/"
 						className="hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
 					>
-						Cryptic Conditioner
+						Cryptic Conditioning
 					</a>
 				</h1>
 			</header>
-			<main className="flex-1">
+			<main className="flex-1 overflow-y-auto">
 				<CrypticTrainer
 					clue={clue}
 					onNewClue={handleNewClue}

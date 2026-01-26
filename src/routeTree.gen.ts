@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MiniRouteImport } from './routes/mini'
 import { Route as EndlessRouteImport } from './routes/endless'
 import { Route as DailyRouteImport } from './routes/daily'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MiniRoute = MiniRouteImport.update({
+  id: '/mini',
+  path: '/mini',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EndlessRoute = EndlessRouteImport.update({
   id: '/endless',
   path: '/endless',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/daily': typeof DailyRoute
   '/endless': typeof EndlessRoute
+  '/mini': typeof MiniRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/daily': typeof DailyRoute
   '/endless': typeof EndlessRoute
+  '/mini': typeof MiniRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/daily': typeof DailyRoute
   '/endless': typeof EndlessRoute
+  '/mini': typeof MiniRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/daily' | '/endless'
+  fullPaths: '/' | '/daily' | '/endless' | '/mini'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/daily' | '/endless'
-  id: '__root__' | '/' | '/daily' | '/endless'
+  to: '/' | '/daily' | '/endless' | '/mini'
+  id: '__root__' | '/' | '/daily' | '/endless' | '/mini'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DailyRoute: typeof DailyRoute
   EndlessRoute: typeof EndlessRoute
+  MiniRoute: typeof MiniRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/mini': {
+      id: '/mini'
+      path: '/mini'
+      fullPath: '/mini'
+      preLoaderRoute: typeof MiniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/endless': {
       id: '/endless'
       path: '/endless'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DailyRoute: DailyRoute,
   EndlessRoute: EndlessRoute,
+  MiniRoute: MiniRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
