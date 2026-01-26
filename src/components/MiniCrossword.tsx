@@ -290,7 +290,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 		const isInActiveEntry = activeCells.includes(index);
 
 		const baseClasses =
-			"w-full aspect-square border border-gray-400 dark:border-gray-600 flex items-center justify-center font-mono text-base sm:text-lg md:text-xl font-bold";
+			"w-full aspect-square border border-gray-400 dark:border-gray-600 flex items-center justify-center font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-bold min-h-[48px]";
 		const blockClasses = "bg-gray-300 dark:bg-gray-800";
 		const entryClasses = isInActiveEntry
 			? "bg-yellow-100 dark:bg-yellow-900/30"
@@ -363,8 +363,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 			)}
 
 			<div className="grid gap-6 md:grid-cols-[auto_1fr]">
-				<div className="grid grid-cols-7 gap-1 justify-center">
-					{" "}
+				<div className="grid grid-cols-7 gap-1 w-full max-w-[420px] sm:max-w-[520px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[880px] 2xl:max-w-[960px] mx-auto">
 					{grid.map((cell, index) => renderGridCell(cell, index))}
 				</div>
 
@@ -407,7 +406,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 													: "text-gray-600 dark:text-gray-400"
 											}`}
 										>
-											{entry.id}: {entry.clue} ({entry.length})
+											{entry.id}: {entry.clue}
 										</button>
 									</li>
 								))}
