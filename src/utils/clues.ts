@@ -55,10 +55,43 @@ export function hashSeedToIndex(seed: string): number {
 }
 
 export function getDateBasedIndex(): number {
+	// Get current time in Central Time (America/Chicago)
+	// Central Time is UTC-6 (CST) or UTC-5 (CDT)
 	const now = new Date();
-	const start = new Date("2024-01-01");
+	const centralTimeString = now.toLocaleString("en-US", {
+		timeZone: "America/Chicago",
+	});
+	const centralDate = new Date(centralTimeString);
+	
+	// Reset to midnight Central Time
+	const centralMidnight = new Date(
+		centralDate.getFullYear(),
+		centralDate.getMonth(),
+		centralDate.getDate(),
+		0,
+		0,
+		0,
+		0,
+	);
+	
+	// Start date at midnight Central Time
+	const start = new Date("2024-01-01T00:00:00");
+	const startCentralString = start.toLocaleString("en-US", {
+		timeZone: "America/Chicago",
+	});
+	const startCentral = new Date(startCentralString);
+	const startCentralMidnight = new Date(
+		startCentral.getFullYear(),
+		startCentral.getMonth(),
+		startCentral.getDate(),
+		0,
+		0,
+		0,
+		0,
+	);
+	
 	const daysSinceStart = Math.floor(
-		(now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
+		(centralMidnight.getTime() - startCentralMidnight.getTime()) / (1000 * 60 * 60 * 24),
 	);
 	return daysSinceStart % clues.length;
 }
