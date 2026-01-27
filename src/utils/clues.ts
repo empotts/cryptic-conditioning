@@ -293,13 +293,38 @@ function canPlaceWord(
 	direction: "across" | "down",
 	size: number,
 ) {
+	const isFilled = (r: number, c: number) => {
+		if (r < 0 || c < 0 || r >= size || c >= size) return false;
+		return grid[r * size + c] !== "";
+	};
+
 	for (let i = 0; i < answer.length; i++) {
 		const r = row + (direction === "down" ? i : 0);
 		const c = col + (direction === "across" ? i : 0);
 		const index = r * size + c;
 		const cell = grid[index];
+		const isCrossing = cell !== "";
+
 		if (cell !== "" && cell !== answer[i]) {
 			return false;
+		}
+
+		if ((i === 0 || i === answer.length - 1) && isCrossing) {
+			return false;
+		}
+
+		if (direction === "across") {
+			if (i === 0 && isFilled(r, c - 1)) return false;
+			if (i === answer.length - 1 && isFilled(r, c + 1)) return false;
+			if (i === 0 || i === answer.length - 1) {
+				if (isFilled(r - 1, c) || isFilled(r + 1, c)) return false;
+			}
+		} else {
+			if (i === 0 && isFilled(r - 1, c)) return false;
+			if (i === answer.length - 1 && isFilled(r + 1, c)) return false;
+			if (i === 0 || i === answer.length - 1) {
+				if (isFilled(r, c - 1) || isFilled(r, c + 1)) return false;
+			}
 		}
 	}
 	return true;

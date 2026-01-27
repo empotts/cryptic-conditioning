@@ -36,6 +36,7 @@
 		color: rgb(17 24 39);
 		background-color: rgb(249 250 251);
 		overscroll-behavior-y: none;
+		touch-action: manipulation;
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -44,6 +45,7 @@
 			background-color: rgb(3 7 18);
 			color: rgb(229 231 235);
 			overscroll-behavior-y: none;
+			touch-action: manipulation;
 		}
 	}
 
