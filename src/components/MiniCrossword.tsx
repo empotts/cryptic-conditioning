@@ -441,9 +441,9 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 				className="sr-only"
 				disabled={revealed}
 				tabIndex={-1}
-				inputMode="none"
 				autoCorrect="off"
 				autoCapitalize="off"
+				inputMode="text"
 			/>
 		</div>
 	);
