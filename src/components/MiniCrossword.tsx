@@ -68,11 +68,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 		setTimeout(() => {
 			const input = inputRef.current;
 			if (!input) return;
-			try {
-				input.focus({ preventScroll: true });
-			} catch {
-				input.focus();
-			}
+			input.focus();
 		}, 100);
 	}, [puzzle, entryCells]);
 
@@ -95,11 +91,7 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 	const focusInput = () => {
 		const input = inputRef.current;
 		if (!input) return;
-		try {
-			input.focus({ preventScroll: true });
-		} catch {
-			input.focus();
-		}
+		input.focus();
 	};
 
 	const handleCellClick = (index: number) => {
@@ -119,21 +111,21 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 
 		setActiveEntryId(preferredEntry.id);
 		setActiveCell(index);
-		requestAnimationFrame(() => focusInput());
+		focusInput();
 	};
 
 	const handleClueClick = (entryId: MiniEntry["id"]) => {
 		setActiveEntryId(entryId);
 		const firstCell = entryCells[entryId]?.[0] ?? null;
 		setActiveCell(firstCell);
-		requestAnimationFrame(() => focusInput());
+		focusInput();
 	};
 
 	const focusEntry = (entryId: MiniEntry["id"]) => {
 		setActiveEntryId(entryId);
 		const firstCell = entryCells[entryId]?.[0] ?? null;
 		setActiveCell(firstCell);
-		requestAnimationFrame(() => focusInput());
+		focusInput();
 	};
 
 	const moveToNextEntry = (direction: "next" | "prev") => {
@@ -438,6 +430,8 @@ export function MiniCrossword({ puzzle, onGenerate }: MiniCrosswordProps) {
 				value={inputValue}
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
+				onTouchStart={() => focusInput()}
+				onClick={() => focusInput()}
 				className="sr-only"
 				disabled={revealed}
 				tabIndex={-1}
