@@ -9,19 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MiniRouteImport } from './routes/mini'
-import { Route as EndlessRouteImport } from './routes/endless'
-import { Route as DailyRouteImport } from './routes/daily'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DailyRouteImport } from './routes/daily'
+import { Route as EndlessRouteImport } from './routes/endless'
+import { Route as MiniRouteImport } from './routes/mini'
 
-const MiniRoute = MiniRouteImport.update({
-  id: '/mini',
-  path: '/mini',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EndlessRoute = EndlessRouteImport.update({
-  id: '/endless',
-  path: '/endless',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DailyRoute = DailyRouteImport.update({
@@ -29,9 +24,14 @@ const DailyRoute = DailyRouteImport.update({
   path: '/daily',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const EndlessRoute = EndlessRouteImport.update({
+  id: '/endless',
+  path: '/endless',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniRoute = MiniRouteImport.update({
+  id: '/mini',
+  path: '/mini',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -71,18 +71,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/mini': {
-      id: '/mini'
-      path: '/mini'
-      fullPath: '/mini'
-      preLoaderRoute: typeof MiniRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/endless': {
-      id: '/endless'
-      path: '/endless'
-      fullPath: '/endless'
-      preLoaderRoute: typeof EndlessRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/daily': {
@@ -92,11 +85,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DailyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/endless': {
+      id: '/endless'
+      path: '/endless'
+      fullPath: '/endless'
+      preLoaderRoute: typeof EndlessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini': {
+      id: '/mini'
+      path: '/mini'
+      fullPath: '/mini'
+      preLoaderRoute: typeof MiniRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
