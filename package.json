@@ -28,8 +28,14 @@
 		"@vitejs/plugin-react": "^4.7.0",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^5.9.3",
-		"vite": "^7.3.6",
+		"vite": "^7.3.7",
 		"vite-tsconfig-paths": "^5.1.4",
 		"wrangler": "^4.147.0"
+	} ,
+	"pnpm": {
+		"overrides": {
+			"miniflare@5.20261001.0-alpha>sharp": "0.35.5",
+			"miniflare@5.20261001.0-alpha>undici": "7.30.1"
+		}
 	}
 }
